@@ -9,3 +9,4 @@ Tailscale must be started with the current user:
 ```bash
 $ sudo tailscale set --operator=$USER
 ```
+# trayscale

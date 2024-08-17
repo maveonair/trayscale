@@ -1,6 +1,8 @@
 # Trayscale
 
-A simple Tailscale systray utility for KDE Plasma
+A simple Tailscale systray utility for KDE Plasma:
+
+![plasma-panel-with-trayscale](docs/plasma-panel.png)
 
 ## Requirements
 

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Trayscale
+GenericName=Trayscale
+Comment=A simple Tailscale utility
+Version=0.0.1
+Exec=tryscale
+Icon=com.maveonair.Trayscale
+Type=Application
+Terminal=false
+Categories=Office;
+X-KDE-FormFactor=desktop;tablet;handset;

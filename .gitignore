@@ -28,6 +28,8 @@ MANIFEST
 .flatpak-builder/
 .flatpak/
 flatpak-build-dir/
+trayscale-main/
+trayscale.flatpak
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

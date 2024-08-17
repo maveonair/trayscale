@@ -15,8 +15,6 @@ resources_path = os.path.join(base_path, "resources")
 online_icon_path = os.path.join(resources_path, "online.png")
 offline_icon_path = os.path.join(resources_path, "offline.png")
 
-print(online_icon_path)
-
 
 class SysTray(QObject):
     def __init__(self, app: QApplication) -> None:

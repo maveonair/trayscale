@@ -16,7 +16,7 @@ offline_icon_path = os.path.join(resources_path, "offline.png")
 
 
 class SysTray(QObject):
-    def __init__(self, app: QApplication) -> None:
+    def __init__(self) -> None:
         super().__init__(parent=None)
 
         self.systray = QSystemTrayIcon()
@@ -33,10 +33,26 @@ class SysTray(QObject):
 
         self.systray.setIcon(icon)
         self.systray.setVisible(True)
-        self._update_tooltip(is_online)
 
+        self._update_tooltip(is_online)
         self._make_menu(is_online)
-        self.systray.setContextMenu(self.menu)
+
+    def change_connectivity(self) -> None:
+        is_online = self.tailscale_client.is_online()
+        if is_online:
+            self.tailscale_client.disconnect()
+            self._update_state_and_inform_user(
+                is_online=False,
+                icon_path=offline_icon_path,
+                message="Disconnected from Tailscale",
+            )
+        else:
+            self.tailscale_client.connect()
+            self._update_state_and_inform_user(
+                is_online=True,
+                icon_path=online_icon_path,
+                message="Connected to Tailscale",
+            )
 
     def _update_tooltip(self, is_online: bool):
         if is_online:
@@ -54,34 +70,25 @@ class SysTray(QObject):
         self.menu.addAction(self.toggle_connectivity)
         self.menu.addAction(self.item_quit)
 
+        self.systray.setContextMenu(self.menu)
+
     def _update_action_button_text(self, is_online: bool) -> None:
         if is_online:
             self.toggle_connectivity.setText("Disconnect")
         else:
             self.toggle_connectivity.setText("Connect")
 
-    def change_connectivity(self) -> None:
-        is_online = self.tailscale_client.is_online()
-        if is_online:
-            self.tailscale_client.disconnect()
+    def _update_state_and_inform_user(
+        self,
+        is_online: bool,
+        icon_path: str,
+        message: str,
+    ) -> None:
+        icon = QIcon(icon_path)
+        self.systray.setIcon(icon)
 
-            icon = QIcon(offline_icon_path)
-            self.systray.setIcon(icon)
-
-            self._update_action_button_text(is_online=False)
-            self._update_tooltip(is_online=False)
-
-            message = "Connection is down"
-        else:
-            self.tailscale_client.connect()
-
-            icon = QIcon(online_icon_path)
-            self.systray.setIcon(icon)
-
-            self._update_action_button_text(is_online=True)
-            self._update_tooltip(is_online=True)
-
-            message = "Connection is up"
+        self._update_action_button_text(is_online)
+        self._update_tooltip(is_online)
 
         self._show_message(title="Trayscale", message=message)
 
@@ -97,7 +104,7 @@ def main():
     """Needed to close the app with Ctrl+C"""
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-    systray = SysTray(app=app)
+    systray = SysTray()
     systray.item_quit.triggered.connect(app.quit)
     systray.toggle_connectivity.triggered.connect(systray.change_connectivity)
 

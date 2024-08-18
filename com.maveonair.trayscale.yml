@@ -7,12 +7,12 @@ base: com.riverbankcomputing.PyQt.BaseApp
 base-version: "6.7"
 command: trayscale
 finish-args:
-  - "--socket=fallback-x11"
-  - "--socket=wayland"
-  - "--device=dri"
-  - "--share=ipc"
-  - "--talk-name=org.kde.StatusNotifierWatcher"
-  - "--filesystem=/run/tailscale:ro"
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --share=ipc
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --filesystem=/run/tailscale:ro
 modules:
   - name: trayscale
     buildsystem: simple

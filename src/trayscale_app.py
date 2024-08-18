@@ -87,7 +87,7 @@ class SysTray(QObject):
 
     def _show_message(self, title: str, message: str) -> None:
         icon = QSystemTrayIcon.MessageIcon.NoIcon
-        self.systray.showMessage(title, message, icon, 5000)
+        self.systray.showMessage(title, message, icon, 3000)
 
 
 def main():

@@ -2,7 +2,6 @@ import os
 import sys
 import signal
 
-from typing import Dict
 from PyQt6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt6.QtCore import QObject
 from PyQt6.QtGui import QIcon, QAction

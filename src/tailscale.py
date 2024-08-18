@@ -1,4 +1,3 @@
-import http.client
 import json
 import socket
 
@@ -41,7 +40,12 @@ class TailscaleClient:
         try:
             if payload:
                 json_data = json.dumps(payload)
-                connection.request(method, url, body=json_data, headers={'Content-Type': 'application/json'})
+                connection.request(
+                    method,
+                    url,
+                    body=json_data,
+                    headers={"Content-Type": "application/json"},
+                )
             else:
                 connection.request(method, url)
 

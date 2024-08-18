@@ -3,6 +3,7 @@ PHONY: clean build flatpak-build flatpak-run flatpak-bundle
 clean:
 	rm -rf dist/
 	rm -rf .flatpak-builder/
+	rm -f trayscale.flatpak
 
 build: clean
 	python3 -m build

@@ -18,7 +18,7 @@ This requires the dev setup, see section below.
 
 ```bash
 $ make flatpak-bundle
-$ flatpak install trayscale.flatpa
+$ flatpak install trayscale.flatpak
 ```
 
 ## Dev Setup

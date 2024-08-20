@@ -22,4 +22,4 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        path: dist/com_maveonair_trayscale-0.0.2.tar.gz
+        path: dist/com_maveonair_trayscale-0.0.3.tar.gz

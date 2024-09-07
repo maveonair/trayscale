@@ -27,4 +27,6 @@ flatpak install trayscale.flatpak
 sudo dnf install python3-pyqt6 kf6-kirigami-devel flatpak-builder qqc2-desktop-style appstream-compose
 python3 -m venv --system-site-packages .venv/
 source .venv/bin/activate
+pip install -r requirements.txt
+flatpak install org.kde.Platform/x86_64/6.7 org.kde.Sdk/x86_64/6.7
 ```
